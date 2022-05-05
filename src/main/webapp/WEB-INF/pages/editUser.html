@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit user</title>
+</head>
+<body>
+<h2>Edit user</h2>
+<div>
+
+  <form th:action="@{/users/edit}" th:object="${user}" method="post">
+    <input type="hidden" name="id" th:value="${user.getId()}">
+    <fieldset>
+      <legend>User</legend>
+      <p>
+        <label th:for="name">Name</label>
+        <label>
+          <input type="text" name="name" th:id="Name" th:value="${user.getName()}">
+        </label>
+      <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+      <p>
+        <label th:for="lastName">Lastname</label>
+        <label>
+          <input type="text" name="lastName" th:id="lastName" th:value="${user.getLastName()}">
+        </label><br/>
+      <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">lastName error</div>
+        <label th:for="email">Email</label>
+      <label>
+        <input type="text" name="email" th:id="email" th:value="${user.getEmail()}">
+      </label><br/>
+      <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+      <p>
+    </fieldset>
+    <button type="submit">Edit</button>
+  </form>
+
+
+  <br/>
+  <form th:action="@{/}">
+    <button type="submit">Back</button>
+  </form>
+</div>
+</body>
+</html>
